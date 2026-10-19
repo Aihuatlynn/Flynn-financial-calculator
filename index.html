@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Passive Income & Investment Capital Planner</title>
+<style>
+:root{--navy:#14243a;--blue:#2458a6;--teal:#117c75;--ink:#182230;--muted:#627084;--line:#dce3ec;--bg:#f3f6fa;--card:#fff;--gold:#f2b84b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{background:linear-gradient(120deg,#14243a,#214d79);color:#fff;padding:30px 22px 26px}
+.wrap{max-width:1180px;margin:auto}header .eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:11px;color:#a9c8ef;font-weight:800}h1{font-size:clamp(27px,4vw,39px);line-height:1.12;margin:8px 0}.report-banner{display:none}header p{max-width:760px;color:#d9e6f5;margin:10px 0 0}
+main{max-width:1180px;margin:22px auto;padding:0 16px 38px}.toolbar{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:16px;align-items:center}
+button{border:0;border-radius:10px;padding:11px 15px;font-weight:750;cursor:pointer;font-size:14px}
+.primary{background:var(--teal);color:#fff}.secondary{background:#fff;border:1px solid var(--line);color:var(--navy)}.toolbar .hint{font-size:12px;color:var(--muted);margin-left:auto}
+.layout{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,1fr);gap:16px;align-items:start}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 4px 16px #14243a08;margin-bottom:16px}
+h2{font-size:18px;margin:0 0 4px;color:var(--navy)}.sub{color:var(--muted);font-size:12px;margin:0 0 16px}
+.section-label{font-size:11px;font-weight:850;text-transform:uppercase;letter-spacing:.1em;color:var(--blue);margin:20px 0 10px}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field{min-width:0}.field.full{grid-column:1/-1}label{display:block;font-size:12px;font-weight:700;color:#455468;margin-bottom:5px}
+input,select{width:100%;padding:10px 11px;border:1px solid #ccd6e2;border-radius:9px;background:#fff;color:var(--ink);font:inherit;min-height:42px}input:focus,select:focus{outline:2px solid #a8c8f4;border-color:var(--blue)}
+.note{font-size:11px;color:var(--muted);margin-top:5px}.metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px}.metric{padding:15px;border-radius:12px;background:#f3f7fc;border:1px solid #e1e9f3;min-width:0}.metric.main{background:#e5f6f0;border-color:#b6e4d5}.metric:nth-child(2){background:#edf3ff;border-color:#cfddfb}.metric:nth-child(3){background:#fff5df;border-color:#f1dfad}.metric:nth-child(4){background:#f2edff;border-color:#ddd1fa}.metric:nth-child(5){background:#eaf7ff;border-color:#c8e8fa}.metric:nth-child(6){background:#fff0f3;border-color:#f4d0d9}.metric .label{font-size:11px;color:#53647a;font-weight:750}.metric .value{font-size:clamp(19px,2.4vw,27px);font-weight:850;letter-spacing:-.035em;color:var(--navy);overflow-wrap:anywhere;margin:3px 0}.metric.main .value{color:#086a5e}.metric .desc{font-size:11px;color:var(--muted)}
+.callout{padding:12px 14px;background:#fff8e8;border:1px solid #f2dfad;border-radius:11px;font-size:12px;color:#654a12;margin-top:13px}
+.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:12px;white-space:nowrap}th,td{text-align:right;padding:10px 8px;border-bottom:1px solid #e8edf3}th{color:#596a80;font-size:11px;background:#f7f9fc}th:first-child,td:first-child{text-align:left}
+.barrow{margin:14px 0}.barhead{display:flex;justify-content:space-between;gap:10px;font-size:12px;margin-bottom:6px}.bar{height:9px;border-radius:20px;background:#e5ebf2;overflow:hidden}.bar span{display:block;height:100%;background:linear-gradient(90deg,#117c75,#52b9a3);border-radius:20px}
+small,.small{font-size:11px;color:var(--muted)}.footer{color:#68778a;font-size:11px;margin-top:16px}.disclaimer{border-top:1px solid var(--line);padding-top:14px;margin-top:18px;font-size:11px;color:#66758a}
+@media(max-width:800px){.layout{grid-template-columns:1fr}.hint{width:100%;margin-left:0!important}.card{padding:16px}}
+@media(max-width:440px){.fields,.metrics{grid-template-columns:1fr}.field.full{grid-column:auto}header{padding:24px 17px}main{padding:0 10px 24px}}
+@media print{.report-banner{display:block;background:#14243a!important;color:#fff!important;border-radius:10px;padding:13px 16px;margin-bottom:10px}.report-kicker{font-size:9px;letter-spacing:.14em;color:#9cc8f2!important;font-weight:800}.report-title{font-size:20px;font-weight:850;margin:2px 0}.report-meta{font-size:10px;color:#d9e6f5!important}*{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}body{background:#fff;font-size:11px}header{background:#fff!important;color:#14243a;padding:0 0 14px}header p{color:#455468}.wrap,main{max-width:none;margin:0;padding:0}.toolbar,.input-card{display:none!important}.layout{display:block}.card{box-shadow:none;border:1px solid #cfd7e1;break-inside:avoid;padding:12px;margin-bottom:10px}.metric .value{font-size:18px}h1{font-size:25px}.sub{margin-bottom:8px}.footer,.disclaimer{font-size:9px}table{font-size:10px}#yearTable tr:nth-child(n+13){display:none} }
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<div class="eyebrow">Personal finance · Malaysia</div>
+<h1>Passive Income &amp; Investment Capital Planner</h1>
+<p>Work backwards from the income you want. Estimate the capital target, the lump sum needed today, and the monthly investment required—then compare cautious, base and optimistic scenarios.</p>
+</div></header>
+<main>
+<div class="report-banner" id="reportBanner"><div class="report-kicker">INVESTMENT PLAN · PERSONAL PROJECTION</div><div class="report-title">Passive Income Capital Report</div><div class="report-meta" id="reportMeta">Editable assumptions and estimated results</div></div>
+<div class="toolbar">
+<button class="primary" onclick="window.print()">Print / Save as PDF</button>
+<button class="secondary" onclick="downloadCSV()">Export projection CSV</button>
+<button class="secondary" onclick="copySummary()">Copy results</button>
+<button class="secondary" onclick="resetInputs()">Reset example</button>
+<span class="hint">MYR by default · editable assumptions · no account connection required</span>
+</div>
+<div class="layout">
+<div>
+<section class="card input-card">
+<h2>Your goal &amp; investment assumptions</h2><p class="sub">Change any input; results update automatically.</p>
+<div class="section-label">1 · Income goal</div>
+<div class="fields">
+<div class="field"><label for="currency">Display currency</label><select id="currency"><option value="MYR">MYR — Malaysian ringgit</option><option value="USD">USD — US dollar</option><option value="SGD">SGD — Singapore dollar</option><option value="GBP">GBP — pound sterling</option><option value="EUR">EUR — euro</option></select></div>
+<div class="field"><label for="asset">Investment type</label><select id="asset"><option>Dividend stocks</option><option>Dividend ETF</option><option>Broad-market ETF</option><option>Unit trust / mutual fund</option><option>REITs</option><option>Mixed portfolio</option></select></div>
+<div class="field"><label for="income">Desired passive income</label><input id="income" type="number" min="0" step="100" value="5000"></div>
+<div class="field"><label for="frequency">Income goal frequency</label><select id="frequency"><option value="month">Per month</option><option value="year">Per year</option></select></div>
+<div class="field"><label for="horizon">Years until income starts</label><input id="horizon" type="number" min="0" max="80" step="1" value="15"><div class="note"><b>Key note:</b> Choose when you want the portfolio to start supporting your income goal. A longer horizon gives contributions more time to compound.</div></div>
+<div class="field"><label for="inflation">Annual inflation assumption (%)</label><input id="inflation" type="number" min="0" max="30" step=".1" value="2.5"><div class="note"><b>Key note:</b> Inflation raises the future income target needed to preserve today’s purchasing power. Use a long-term estimate; actual inflation varies.</div></div>
+</div>
+<div class="section-label">2 · Return &amp; income assumptions</div>
+<div class="fields">
+<div class="field"><label for="yield">Annual distribution / dividend yield (%)</label><input id="yield" type="number" min="0" max="100" step=".1" value="4"><div class="note"><b>Key note:</b> Annual cash distributions ÷ portfolio value. RM4,000 on RM100,000 = 4%. This is cash yield, not total investment return. Fund expenses are modeled separately in the growth projection; the separate portfolio-based platform fee is deducted when estimating spendable income.</div></div>
+<div class="field"><label for="tax">Tax / withholding on distributions (%)</label><input id="tax" type="number" min="0" max="100" step="1" value="0"><div class="note"><b>Key note:</b> This is an estimate for tax/withholding applied to the distribution yield only—not a universal Malaysia tax rate. For ordinary Malaysian single-tier dividends, start at 0% unless a specific rule applies to you. Foreign shares/ETFs may have withholding tax, including tax deducted inside a fund. Check the fund domicile, broker statement and your tax circumstances; Malaysia’s separate 2% dividend-tax rule for some individuals is not a blanket withholding tax.</div></div>
+<div class="field"><label for="growth">Expected annual total return before fees (%)</label><input id="growth" type="number" min="-99" max="100" step=".1" value="7"><div class="note"><b>Key note:</b> Total return combines price change and distributions (including reinvested distributions). Example: 5% price growth + 2% distributions ≈ 7%. Do not add dividend yield to total return again.</div></div>
+<div class="field"><label for="fee">Annual fund management / expense fee (%)</label><input id="fee" type="number" min="0" max="20" step=".05" value=".5"><div class="note"><b>Key note:</b> For unit trusts, check the fund factsheet for annual management and recurring fund expenses. These are usually reflected in the fund’s NAV/returns, not billed separately each month. For ETFs, use the annual expense ratio. Avoid double-counting fees already included in a published net return.</div></div>
+<div class="field"><label for="platformFee">Separate annual platform / advisory fee (%)</label><input id="platformFee" type="number" min="0" max="20" step=".05" value="0"><div class="note"><b>Key note:</b> Enter only a separate recurring account/platform/advisory fee charged on your portfolio. Many stock brokers charge per trade instead and have no annual platform fee. Enter 0 if none or if already included above.</div></div>
+<div class="field"><label for="purchaseFee">Purchase / sales charge on each investment (%)</label><input id="purchaseFee" type="number" min="0" max="20" step=".05" value="0"><div class="note"><b>Key note:</b> This is a one-off charge each time you invest, and is applied to both your initial lump sum and monthly top-ups in this model. Unit trusts may charge an upfront sales charge; stock/ETF trades usually have brokerage and transaction costs. Convert your actual charge to an estimated percentage per purchase. Enter 0 if there is no charge.</div></div>
+<div class="field full"><div class="note">Total return includes price growth plus distributions. Do not add the dividend yield to total return again. The income yield is used separately to estimate cash income from the future portfolio.</div></div>
+</div>
+<div class="callout"><b>Fee guide:</b> Purchase/sales charge = paid when each contribution is invested. Fund management/expense fee = recurring cost inside the fund, usually reflected in NAV. Platform/advisory fee = a separate recurring charge if your provider bills one. Brokerage, exchange/clearing charges and stamp duty can be transaction-based; include them in the purchase-charge estimate only if you can reasonably express them as a percentage. Do not enter the same fee twice.</div>
+<div class="section-label">3 · Your starting position</div>
+<div class="fields">
+<div class="field"><label for="initial">Investable lump sum today</label><input id="initial" type="number" min="0" step="1000" value="50000"><div class="note"><b>Key note:</b> Enter the amount available to invest now, excluding emergency savings and money needed for near-term expenses.</div></div>
+<div class="field"><label for="monthly">Monthly contribution you can afford</label><input id="monthly" type="number" min="0" step="100" value="1000"><div class="note"><b>Key note:</b> This is your planned monthly investment. The result called “Monthly investment needed” separately estimates the amount required to reach your target.</div></div>
+<div class="field"><label for="stepup">Annual increase in contributions (%)</label><input id="stepup" type="number" min="0" max="50" step=".5" value="0"><div class="note"><b>Key note:</b> At 5%, your monthly contribution rises by 5% each year. Leave at 0% if you expect to contribute the same amount throughout.</div></div>
+<div class="field"><label for="scenario">Return scenario to plan around</label><select id="scenario"><option value="base">Base case</option><option value="cautious">Cautious case</option><option value="optimistic">Optimistic case</option></select><div class="note"><b>Key note:</b> Cautious uses your expected return minus 2 percentage points; optimistic adds 2 points. These are sensitivity tests, not forecasts.</div></div>
+<div class="field full"><div class="note">Scenario returns are sensitivity tests, not forecasts: cautious = base return −2 percentage points; optimistic = base return +2 points.</div></div>
+</div>
+</section>
+<section class="card">
+<h2>How to read the estimate</h2>
+<p class="sub">A useful planning estimate—not a guarantee of income or investment performance.</p>
+<ul style="padding-left:19px;margin:0;font-size:13px">
+<li><b>Income capital target:</b> future annual income goal divided by the estimated net cash yield.</li>
+<li><b>Capital required today:</b> the present value of that future target using your selected net total-return assumption.</li>
+<li><b>Monthly contribution required:</b> the approximate monthly amount needed, alongside your current lump sum, to reach the target by your chosen date.</li>
+<li><b>Income sustainability:</b> a yield-based estimate; it does not guarantee that distributions will continue or that principal will retain its value.</li>
+</ul>
+<div class="callout" id="warning">Remember: higher yields can come with higher risks, and market returns are not smooth year to year.</div>
+</section>
+</div>
+<div>
+<section class="card" id="results">
+<h2>Your results</h2><p class="sub" id="resultSubtitle">Illustrative projection based on your inputs.</p>
+<div class="metrics">
+<div class="metric main"><div class="label">Capital target when income starts</div><div class="value" id="target">—</div><div class="desc">To support your future income goal</div></div>
+<div class="metric"><div class="label">Equivalent capital needed today</div><div class="value" id="today">—</div><div class="desc">Present value under selected return</div></div>
+<div class="metric"><div class="label">Monthly investment needed</div><div class="value" id="requiredMonthly">—</div><div class="desc">To reach target with your starting lump sum</div></div>
+<div class="metric"><div class="label">Projected portfolio at target date</div><div class="value" id="projected">—</div><div class="desc">Using your current contribution plan</div></div>
+<div class="metric"><div class="label">Estimated monthly income at target date</div><div class="value" id="projectedIncome">—</div><div class="desc">After assumed distribution tax and fees</div></div>
+<div class="metric"><div class="label">Income goal in today's purchasing power</div><div class="value" id="realIncome">—</div><div class="desc">Inflation-adjusted future income goal</div></div>
+</div>
+<div class="section-label">Capital target vs your projected portfolio</div>
+<div class="barrow"><div class="barhead"><span>Projected portfolio</span><b id="portfolioLabel">—</b></div><div class="bar"><span id="portfolioBar" style="width:0%"></span></div></div>
+<div class="barrow"><div class="barhead"><span>Capital target</span><b id="targetLabel">—</b></div><div class="bar"><span id="targetBar" style="width:0%;background:#e3a52f"></span></div></div>
+<div id="gapText" class="callout">Enter your assumptions to calculate the gap.</div>
+</section>
+<section class="card">
+<h2>Scenario comparison</h2><p class="sub">See how different return assumptions change the result. Income yield, inflation, fees and tax assumptions stay the same.</p>
+<div class="table-wrap"><table><thead><tr><th>Scenario</th><th>Gross total return</th><th>Net return</th><th>Capital today</th><th>Monthly needed</th></tr></thead><tbody id="scenarioTable"></tbody></table></div>
+<div class="section-label">Projection by year</div>
+<div class="table-wrap"><table><thead><tr><th>Year</th><th>Start balance</th><th>Contributions</th><th>Growth after fees</th><th>End balance</th><th>Income / month</th></tr></thead><tbody id="yearTable"></tbody></table></div>
+<div class="footer">Projection assumes contributions are made monthly at month-end and returns accrue smoothly at a constant equivalent monthly rate. Real returns, dividends, fees, taxes and currency exchange rates will vary.</div>
+<div class="disclaimer"><b>Important:</b> This tool is for education and scenario planning, not personalized financial advice. It does not fetch live security prices, estimate Malaysia-specific tax treatment for your individual circumstances, model sequence-of-returns risk, or guarantee distributions. Confirm current fund yield, expense ratio, dealing costs, domicile and applicable taxes with official providers and a qualified adviser.</div>
+</section>
+</div>
+</div>
+</main>
+<script>
+const ids=['currency','asset','income','frequency','horizon','inflation','yield','tax','growth','fee','platformFee','purchaseFee','initial','monthly','stepup','scenario'];
+const el=id=>document.getElementById(id);
+const val=id=>Number(el(id).value)||0;
+const clamp=(x,a,b)=>Math.min(b,Math.max(a,x));
+const money=n=>{if(!Number.isFinite(n))return 'Not available';const c=el('currency').value;return new Intl.NumberFormat('en-MY',{style:'currency',currency:c,maximumFractionDigits:0}).format(n)};
+const pct=n=>(n*100).toFixed(2)+'%';
+function annualFeeFactor(){return (1-val('fee')/100)*(1-val('platformFee')/100)}
+function netYield(){return val('yield')/100*(1-val('tax')/100)-val('platformFee')/100}
+function netRate(gross){return (1+gross/100)*annualFeeFactor()-1}
+function investedAmount(amount){return amount*(1-val('purchaseFee')/100)}
+function annuityFactor(rate,months){if(months<=0)return 0;if(Math.abs(rate)<1e-10)return months;return (Math.pow(1+rate,months)-1)/rate}
+function project(gross,monthlyContribution=val('monthly')){
+ const years=Math.floor(clamp(val('horizon'),0,80)), months=years*12;
+ const annualNet=netRate(gross), mr=Math.pow(Math.max(.000001,1+annualNet),1/12)-1;
+ let bal=investedAmount(val('initial')),totalContrib=bal, rows=[];
+ rows.push({year:0,start:bal,contrib:0,growth:0,end:bal,income:bal*Math.max(0,netYield())/12});
+ for(let m=1;m<=months;m++){
+   const contribution=investedAmount(monthlyContribution*Math.pow(1+val('stepup')/100,Math.floor((m-1)/12)));
+   const start=bal; bal=bal*(1+mr)+contribution; totalContrib+=contribution;
+   if(m%12===0){rows.push({year:m/12,start:rows.length?rows[rows.length-1].end:start,contrib:0,growth:0,end:bal,income:bal*Math.max(0,netYield())/12});}
+ }
+ // Replace annual row contribution/growth with exact year totals.
+ let b=investedAmount(val('initial')); rows=[{year:0,start:b,contrib:0,growth:0,end:b,income:b*Math.max(0,netYield())/12}]; let total=0;
+ for(let y=1;y<=years;y++){let start=b,con=0;for(let m=1;m<=12;m++){let globalMonth=(y-1)*12+m;let c=investedAmount(monthlyContribution*Math.pow(1+val('stepup')/100,Math.floor((globalMonth-1)/12)));let before=b;b=b*(1+mr)+c;con+=c;}total+=con;rows.push({year:y,start,contrib:con,growth:b-start-con,end:b,income:b*Math.max(0,netYield())/12});}
+ return {balance:b,rows,annualNet,mr,months,totalContrib:totalContrib};
+}
+function requiredMonthly(target,gross){
+ const years=Math.floor(clamp(val('horizon'),0,80)),months=years*12;
+ if(target<=0)return 0;if(months===0)return Math.max(0,(target-val('initial'))/1);
+ const r=Math.pow(Math.max(.000001,1+netRate(gross)),1/12)-1;
+ // Solve monthly contribution with annual step-ups by simulating $1/month.
+ function endFor(c){let b=investedAmount(val('initial'));for(let m=1;m<=months;m++){let add=investedAmount(c*Math.pow(1+val('stepup')/100,Math.floor((m-1)/12)));b=b*(1+r)+add;}return b;}
+ if(endFor(0)>=target)return 0;
+ let lo=0,hi=Math.max(100,target/months);
+ for(let i=0;i<70;i++){if(endFor(hi)>=target)break;hi*=2;}
+ for(let i=0;i<80;i++){let mid=(lo+hi)/2;if(endFor(mid)>=target)hi=mid;else lo=mid;}
+ return hi;
+}
+function capitalToday(target,gross){const years=clamp(val('horizon'),0,80);return (target/Math.pow(Math.max(.000001,1+netRate(gross)),years))/Math.max(.000001,1-val('purchaseFee')/100)}
+function incomeGoalAnnual(){return val('income')*(el('frequency').value==='month'?12:1)}
+function update(){
+ const years=clamp(val('horizon'),0,80), inflation=val('inflation')/100;
+ const targetIncome=incomeGoalAnnual()*Math.pow(1+inflation,years);
+ const y=netYield(), base=val('growth'), scen=el('scenario').value;
+ const gross=base+(scen==='cautious'?-2:scen==='optimistic'?2:0);
+ const netY=y;
+ const target=netY>0?targetIncome/netY:Infinity;
+ const proj=project(gross), today=capitalToday(target,gross), req=requiredMonthly(target,gross);
+ const realIncome=targetIncome/Math.pow(1+inflation,years);
+ el('target').textContent=money(target);
+ el('today').textContent=money(today);
+ el('requiredMonthly').textContent=money(req);
+ el('projected').textContent=money(proj.balance);
+ el('projectedIncome').textContent=money(proj.balance*Math.max(0,netY)/12);
+ el('realIncome').textContent=money(realIncome/12);
+ el('resultSubtitle').textContent=`${el('asset').value} · ${years} year horizon · ${scen} scenario (${gross.toFixed(1)}% gross total return)`;
+ el('reportMeta').textContent=`${el('asset').value} · ${el('currency').value} · ${years}-year horizon · Generated ${new Date().toLocaleDateString()}`;
+ const max=Math.max(1,Number.isFinite(target)?target:0,proj.balance);
+ el('portfolioLabel').textContent=money(proj.balance);el('targetLabel').textContent=money(target);
+ el('portfolioBar').style.width=clamp(proj.balance/max*100,0,100)+'%';
+ el('targetBar').style.width=clamp((Number.isFinite(target)?target:0)/max*100,0,100)+'%';
+ const gap=target-proj.balance;
+ el('gapText').textContent=!Number.isFinite(target)?'Your estimated net income yield is zero or negative. Review the income goal and assumptions; a higher-yield investment is not automatically safer.':gap<=0?`ON TRACK — Your projected portfolio is ${money(-gap)} above the target under these assumptions. This is an illustration, not a guarantee.`:`FUNDING GAP — Your projected portfolio is ${money(gap)} below target. Estimated monthly contribution needed: ${money(req)}.`;
+ el('warning').textContent=y<=0?'The modeled net income yield is zero or negative after distribution tax and annual fees. The income-capital target cannot be calculated meaningfully.':`Net income yield used: ${pct(y)} after the entered distribution tax and fee assumptions. Net total return in this scenario: ${pct(proj.annualNet)}. These are assumptions, not predictions. Fund expenses reduce modeled portfolio growth; a separate portfolio-based platform fee is also deducted from the estimated spendable yield.`;
+ const scenarios=[['Cautious',base-2],['Base',base],['Optimistic',base+2]];
+ el('scenarioTable').innerHTML=scenarios.map(([name,g])=>{let t=netY>0?targetIncome/netY:Infinity;return `<tr><td>${name}</td><td>${g.toFixed(1)}%</td><td>${pct(netRate(g))}</td><td>${money(capitalToday(t,g))}</td><td>${money(requiredMonthly(t,g))}</td></tr>`}).join('');
+ el('yearTable').innerHTML=proj.rows.map(r=>`<tr><td>${r.year===0?'Today':r.year}</td><td>${money(r.start)}</td><td>${money(r.contrib)}</td><td>${money(r.growth)}</td><td>${money(r.end)}</td><td>${money(r.income)}</td></tr>`).join('');
+}
+function summaryText(){
+ return `PASSIVE INCOME & INVESTMENT CAPITAL PLAN\nInvestment type: ${el('asset').value}\nCurrency: ${el('currency').value}\nIncome goal today: ${money(incomeGoalAnnual()/12)} per month\nYears until income starts: ${val('horizon')}\nGross total return assumption: ${val('growth')}%\nDividend/distribution yield: ${val('yield')}%\nDistribution tax/withholding: ${val('tax')}%\nAnnual fund fee: ${val('fee')}%\nAnnual platform/advisory fee: ${val('platformFee')}%\nPurchase charge per investment: ${val('purchaseFee')}%\nInflation assumption: ${val('inflation')}%\nCapital target at income start: ${el('target').textContent}\nEquivalent capital needed today: ${el('today').textContent}\nEstimated monthly contribution needed: ${el('requiredMonthly').textContent}\nProjected portfolio using current contributions: ${el('projected').textContent}\nProjected monthly income: ${el('projectedIncome').textContent}\n\nIllustrative estimates only; actual returns, distributions, costs and taxes vary.`;
+}
+function copySummary(){const text=summaryText();if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(()=>alert('Results copied.')).catch(()=>fallbackCopy(text));}else fallbackCopy(text)}
+function fallbackCopy(text){const t=document.createElement('textarea');t.value=text;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();alert('Results copied.')}
+function downloadCSV(){
+ const rows=[['Year','Starting balance','Contributions','Growth after fees','Ending balance','Estimated monthly income']];
+ const years=Math.floor(clamp(val('horizon'),0,80));const gross=val('growth')+(el('scenario').value==='cautious'?-2:el('scenario').value==='optimistic'?2:0);
+ const p=project(gross);p.rows.forEach(r=>rows.push([r.year,r.start.toFixed(2),r.contrib.toFixed(2),r.growth.toFixed(2),r.end.toFixed(2),r.income.toFixed(2)]));
+ rows.push([]);rows.push(['Summary','Value']);rows.push(['Currency',el('currency').value]);rows.push(['Investment type',el('asset').value]);rows.push(['Estimated distribution tax (%)',val('tax')]);rows.push(['Annual fund fee (%)',val('fee')]);rows.push(['Annual platform/advisory fee (%)',val('platformFee')]);rows.push(['Purchase charge per investment (%)',val('purchaseFee')]);rows.push(['Capital target at income start',el('target').textContent]);rows.push(['Capital required today',el('today').textContent]);rows.push(['Monthly contribution required',el('requiredMonthly').textContent]);rows.push(['Projected portfolio',el('projected').textContent]);
+ const csv=rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\r\n');
+ const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='passive-income-investment-projection.csv';a.click();URL.revokeObjectURL(url);
+}
+function resetInputs(){const defaults={currency:'MYR',asset:'Dividend stocks',income:5000,frequency:'month',horizon:15,inflation:2.5,yield:4,tax:0,growth:7,fee:.5,platformFee:0,purchaseFee:0,initial:50000,monthly:1000,stepup:0,scenario:'base'};for(const [k,v] of Object.entries(defaults))el(k).value=v;update()}
+ids.forEach(id=>el(id).addEventListener('input',update));ids.forEach(id=>el(id).addEventListener('change',update));update();
+</script>
+</body>
+</html>
